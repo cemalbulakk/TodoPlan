@@ -1,0 +1,45 @@
+﻿@model TodoPlan.Core.Dtos.DeveloperTodoCreateDto
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Atananlar</h4>
+                <table>
+                    @foreach (var todo in ViewBag.Todo)
+                    {
+                        <tr>
+                            <td>@todo.Todo.Id</td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="col-md-6">
+                <form asp-action="AddTaskDeveloper" method="post">
+                    <div class="input-group">
+                        <input type="hidden" asp-for="DeveloperId" value="@ViewBag.DeveloperId"/>
+                        <input type="text" value="@ViewBag.DeveloperName" disabled="disabled"/>
+                    </div>
+                    <hr/>
+                    <div class="input-group">
+                        <select asp-for="TodoId">
+                            @foreach (var item in ViewBag.Todos)
+                            {
+                                <option value="@item.Id">@item.Id</option>
+                            }
+                        </select>
+                    </div>
+                    <hr/>
+                    <button type="submit">Atama Yap</button>
+                </form>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
