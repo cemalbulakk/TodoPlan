@@ -8,18 +8,6 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <h4>Atananlar</h4>
-                <table>
-                    @foreach (var todo in ViewBag.Todo)
-                    {
-                        <tr>
-                            <td>@todo.Todo.Id</td>
-                        </tr>
-                    }
-
-                </table>
-            </div>
-            <div class="col-md-6">
                 <form asp-action="AddTaskDeveloper" method="post">
                     <div class="input-group">
                         <input type="hidden" asp-for="DeveloperId" value="@ViewBag.DeveloperId"/>

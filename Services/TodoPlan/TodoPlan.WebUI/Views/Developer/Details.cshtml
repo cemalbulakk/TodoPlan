@@ -1,0 +1,70 @@
+﻿@model TodoPlan.Core.Models.Developer
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    Developer Bilgisi
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Dev Name</th>
+                            <th>WeeklyWorkingHours</th>
+                            <th>Duration</th>
+                            <th>Difficulty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Model.Name</td>
+                            <td>@Model.WeeklyWorkingHours</td>
+                            <td>@Model.Duration</td>
+                            <td>@Model.Difficulty</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    Atanan İşler
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Task ID</th>
+                            <th>Süre</th>
+                            <th>Zorluk</th>
+                            <th>IsAssigned</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var todo in Model.DeveloperTodos)
+                        {
+                            <tr>
+                                <td>@todo.Todo.Id</td>
+                                <td>@todo.Todo.Sure</td>
+                                <td>@todo.Todo.Zorluk</td>
+                                <td>@todo.Todo.IsAssigned</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

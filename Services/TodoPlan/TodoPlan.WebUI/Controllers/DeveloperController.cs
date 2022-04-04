@@ -27,38 +27,14 @@ namespace TodoPlan.WebUI.Controllers
             return View(developers);
         }
 
-        public async Task<IActionResult> AddTaskDeveloper(int developerId)
+        public IActionResult Details(int developerId)
         {
-            ViewBag.DeveloperId = developerId;
-            var dev = _context.Developers.FirstOrDefault(x => x.Id == developerId);
-            if (dev != null) ViewBag.DeveloperName = dev.Name;
-
-            var todo = _context.DeveloperTodos.Include(x => x.Todo).Where(x => x.DeveloperId == developerId).ToList();
-            ViewBag.Todo = todo;
-            var todos = _context.Todos.ToList();
-            ViewBag.Todos = todos;
-            return View();
+            var dev = _context.Developers
+                .Include(x => x.DeveloperTodos)
+                .ThenInclude(x => x.Todo)
+                .FirstOrDefault(x => x.Id == developerId);
+            return View(dev);
         }
 
-        [HttpPost]
-        public IActionResult AddTaskDeveloper(DeveloperTodoCreateDto model)
-        {
-            var developerTodo = new DeveloperTodo()
-            {
-                DeveloperId = model.DeveloperId,
-                TodoId = model.TodoId
-            };
-
-            _context.DeveloperTodos.Add(developerTodo);
-            var result = _context.SaveChanges();
-
-            if (result > 0)
-            {
-                return RedirectToAction("Index");
-            }
-
-            return RedirectToAction("AddTaskDeveloper", model.DeveloperId);
-
-        }
     }
 }

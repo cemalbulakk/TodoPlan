@@ -6,4 +6,5 @@ public class Todo
     public string Id { get; set; }
     public int Sure { get; set; }
     public int Zorluk { get; set; }
+    public bool IsAssigned { get; set; }
 }

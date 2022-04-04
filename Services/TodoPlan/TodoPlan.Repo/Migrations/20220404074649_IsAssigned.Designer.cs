@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodoPlan.Repo;
 
@@ -10,9 +11,10 @@ using TodoPlan.Repo;
 namespace TodoPlan.Repo.Migrations
 {
     [DbContext(typeof(TodoPlanContext))]
-    partial class TodoPlanContextModelSnapshot : ModelSnapshot
+    [Migration("20220404074649_IsAssigned")]
+    partial class IsAssigned
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

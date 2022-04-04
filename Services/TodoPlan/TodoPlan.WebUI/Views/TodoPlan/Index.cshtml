@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="row mb-2">
+    <div class="col-md-12">
+        @{
+            var todoss = ViewBag.Todos;
+            if (todoss.Count > 0)
+            {
+                <a class="btn btn-success" asp-action="TaskAssign">Otomatik Atama Yap</a>
+            }
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Dev Name</th>
+                                <th>WeeklyWorkingHours</th>
+                                <th>Duration</th>
+                                <th>Difficulty</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var dev in ViewBag.Developers)
+                            {
+                                <tr>
+                                    <td>@dev.Name</td>
+                                    <td>@dev.WeeklyWorkingHours</td>
+                                    <td>@dev.Duration</td>
+                                    <td>@dev.Difficulty</td>
+                                    <td>
+                                        <a asp-controller="Developer" asp-action="Details" asp-route-developerId="@dev.Id" class="btn btn-link">Atanan İşleri</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Task ID</th>
+                                <th>Süre</th>
+                                <th>Zorluk</th>
+                                <th>IsAssigned</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var dev in ViewBag.Todos)
+                            {
+                                <tr>
+                                    <td>@dev.Id</td>
+                                    <td>@dev.Sure</td>
+                                    <td>@dev.Zorluk</td>
+                                    <td>@dev.IsAssigned</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
